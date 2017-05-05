@@ -1,0 +1,122 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=latex 2016.10.6)  26 MAR 2017 19:00
+entering extended mode
+**./main.tex
+(main.tex
+LaTeX2e <2016/03/31> patch level 3
+Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
+(mitthesis.cls
+Document Class: mitthesis 1999/10/20
+\vithesis=\count79
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\report.cls"
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size12.clo"
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@chapter=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\c@figure=\count87
+\c@table=\count88
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(C:\Users\Daniel\AppData\Roaming\MiKTeX\2.9\tex\latex\setspace\setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+Thesis document copyright MIT unless otherwise (manually) specified
+\@titlesupervisor=\box26
+\@abstractsupervisor=\box27
+\c@savepage=\count89
+) (lgrind.sty
+Package: lgrind 1997/01/30 v3.4 LGrind environment and supporting stuff
+\lc@unt=\count90
+\ln@xt=\count91
+\LGnuminterval=\count92
+\LGindent=\skip43
+\LGsloppy=\skip44
+\procbox=\box28
+\ls@far=\box29
+\tb@x=\box30
+\TBw@d=\dimen103
+\@ts=\dimen104
+)
+(C:\Users\Daniel\AppData\Roaming\MiKTeX\2.9\tex\latex\cmap\cmap.sty
+Package: cmap 2008/03/06 v1.0h CMap support: searchable PDF
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+Package: fontenc 2016/06/19 v1.99m Standard LaTeX package
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.def"
+File: t1enc.def 2016/06/19 v1.99m Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+)<<t1.cmap>>)
+Enter file names to process, (chap1,chap2 ...), or `all' to process all files:
+
+\files=all
+Including all files.
+(main.aux (cover.aux) (contents.aux) (chap1.aux) (chap2.aux) (appa.aux)
+(appb.aux) (biblio.aux))
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+\openout2 = `cover.aux'.
+
+ (cover.tex
+! Undefined control sequence.
+<argument> \@degree 
+                    
+l.91 \maketitle
+               
+? 
+! Undefined control sequence.
+\maketitle ...at the \par \MIT \par \@degreemonth 
+                                                  \ \@degreeyear \par \@copy...
+l.91 \maketitle
+               
+? 
+! Undefined control sequence.
+\maketitle ...T \par \@degreemonth \ \@degreeyear 
+                                                  \par \@copyrightnotice \pa...
+l.91 \maketitle
+               
+? 
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 91.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 91.
+<<oms.cmap>>
+! Undefined control sequence.
+<recently read> \@thesisdate 
+                             
+l.91 \maketitle
+               
+? 
+! Undefined control sequence.
+<argument> \@chairmanname 
+                          \\ \@chairmantitle 
+l.91 \maketitle
+               
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate

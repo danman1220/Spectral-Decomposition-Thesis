@@ -1,0 +1,153 @@
+\section{Spectral Analysis of Linear Operators}
+In finite dimensional linear algebra, diagonalization is a powerful tool used to
+understand linear operators. One of the key results in linear algebra is the
+spectral theorem, which gives a method of diagonalizing a matrix in terms of its
+eigenvalues and eigenvectors. Since the study of quantum mechanics focuses on
+finding eigenvalues of the quantized linear operators, it is natural to ask
+whether or not the spectral theorem still holds in the infinite-dimensional
+case. While infinite dimensionality introduces some difficulties, there are a
+few equivalent statements of the spectral theorem that work in infinite
+dimensions, and each will provide further insight into the nature of the
+"eigenvalues" of linear operators.
+
+\subsection{The Spectrum of an Operator}
+In finite dimensions, the \em spectrum \em of a matrix is the set of eigenvalues
+associated to that matrix. That is, for a matrix $A \in \mathbb{R}^{n\times n}$,
+the spectrum of $A$ is given as
+\[
+    \sigma(A) = \{\lambda \in \mathbb{C} : Ax=\lambda x \text{ for some } x \in
+    \mathbb{R}^{n}\}
+\]
+
+Another way of restating this is that $\sigma(A)$ is the set of all (complex)
+scalars $\lambda$ such that the matrix $A-\lambda I$ has nontrivial kernel.
+
+Of course, in finite dimensions, having a nontrivial kernel is equivalent to
+being noninvertible, so the spectrum of a matrix $A$ is easiest described as the
+set of all $\lambda$ such that $A-\lambda I$ is not invertible. By defining the
+spectrum in terms of invertibility, it is easy to extend the concept to
+arbitrary Hilbert spaces.
+
+For a general operator $T \in \mathscr{B}(H)$ (where $\mathscr{B}(H)$ is the set
+of bounded linear operators on a Hilbert space \textbf{H}), it is best to define
+the \em spectrum \em of the operator as
+\[
+    \sigma (T) = \{\lambda \in \mathbb{C} : T-\lambda I \text{ is not
+    invertible}\}\]
+
+It is easy to see that this definition coincides with the usual definition in
+finite dimensions, but in an infinite dimensional Hilbert space, things might be
+more complicated.
+
+The problem lies in the fact that there are more ways to fail invertibility in
+infinite dimensions than just having nontrivial kernel. There are three general
+ways to fail invertibility in a Hilbert space, and each failure will lead to a
+different subclassification of the spectrum. The subclassifications of the
+spectrum will be called the spectral partitions of $\sigma(T)$.
+
+The spectral partitions are as follows (\cite[p. 115]{MacCluer2009}):
+
+\begin{enumerate}
+    \itemsep0em
+    \item $T-\lambda I$ has nontrivial kernel (the \em point spectrum\em).
+    \item $T-\lambda I$ is not bounded below (the \em approximate point
+        spectrum\em).
+    \item $T-\lambda I$ does not have dense range (the \em compression
+        spectrum\em).
+\end{enumerate}
+
+Let's consider each of these cases individually.
+
+\subsubsection{The Point Spectrum}
+The \em point spectrum \em is all $\lambda$ such that $T-\lambda I$ has a
+nontrivial kernel. More succinctly, $\lambda \in \sigma_P(T)$ if and only if
+there exists some vector $x\in \textbf{H}$ such that $(T-\lambda I)x = 0$, or
+$Tx=\lambda x$.  This is the familiar eigenvalue equation seen in an
+introductory linear algebra course, and leads to the conclusion that for any
+linear operator on a finite dimensional Hilbert space (like $\mathbb{C}^n$), the
+spectrum of the operator is entirely a point spectrum.
+\begin{example}
+    Consider the matrix
+    \[
+        M = 
+            \begin{bmatrix}
+                \lambda_1 & 0 & \cdots & 0 \\
+                0 & \lambda_2 & \cdots & 0 \\
+                \vdots & \vdots & \ddots & 0\\
+                0 & 0 & 0 & \lambda_n 
+            \end{bmatrix}
+    \]
+    This has eigenvalues $\lambda_n$, and thus its spectrum is
+    \[
+        \sigma(M) = \sigma_P(M) = \{\lambda_n\}
+    \]
+\end{example}
+
+\subsubsection{The Approximate Point Spectrum}
+The point spectrum is actually a subset of the larger \em approximate point
+spectrum \em, which consists of all $\lambda$ such that the operator $T-\lambda
+I$ is not bounded below. That is, $\lambda \in \sigma_{AP}(T)$ if and only if
+there exists some sequence of unit vectors $\{h_n: h_n \in \textbf{H}\}$ for
+which
+\[
+    ||(T-\lambda I)h_n|| \to 0
+\]
+
+It is easy to see that if $\lambda\in\sigma_A(T)$, then
+$\lambda\in\sigma_{AP}(T)$.
+\begin{theorem}
+    Let $T$ be a bounded linear operator on a Hilbert space $\textbf{H}$. Then,
+    $\sigma_P(T) \subset \sigma_{AP}(T)$
+\end{theorem}
+\begin{proof}
+    Suppose $\lambda\in\sigma_P(T)$. Then, 
+    $\exists x\in\textbf{H} : (T-\lambda I)x = 0$. Take $h_n = \frac{x}{||x||}$
+    this is a sequence of unit vectors that satisfy $||(A-\lambda I)h_n||\to 0$,
+    and thus $\lambda\in\sigma_{AP}(T)$.
+\end{proof}
+
+\subsubsection{The Compression Spectrum}
+If $T-\lambda I$ fails to have dense range, $\lambda$ is said to be part of the
+\em compression spectrum \em of $T$. This part of the spectrum will not be
+explored further: the following theorem will motivate why.
+\begin{theorem}
+    For a normal operator $T$, the spectrum of $T$ is entirely approximate point
+    spectrum.
+\end{theorem}
+\begin{proof}
+    Let $\lambda$ be in $\sigma(T)$ for a normal operator $T$, and consider the
+    ways in which $T-\lambda I$ can fail to be invertible.
+
+    If the kernel of $T-\lambda I$ is nontrivial, then $\lambda\in\sigma{P}(T)$,
+    and thus $\lambda\in\sigma_{AP}(T)$.
+
+    Consider, then, the case where the kernel of $T-\lambda I = \{0\}$. Now,
+    since for any normal operator, $||Ax|| = ||A^*x||$ %TODO citation
+    $||(T-\lambda I)x|| = ||(T^* - \overline{\lambda}I)x|| \not= 0$, so the
+    kernel of $T^* - \overline{\lambda}I$ is trivial as well.
+    By the Fredholm alternative (\cite[p. 350]{Olver2014}),
+    \[
+        \overline{\text{Ran}(T-\lambda I)} = \text{Ker}(T^* -
+        \overline{\lambda}I)^{\perp} = \{0\}^{\perp} = \textbf{H}
+        \]
+    And thus the range of $T-\lambda I$ is dense, and is not in the compression
+    spectrum of $T$.
+\end{proof}
+
+All that being said, there are easy examples of operators with a compression
+spectrum.
+\begin{example}
+    Consider the Hilbert space $l^2(\mathbb{R)}$, the space of
+    square-summable sequences. Sequences in this space are commonly represented
+    as "infinite tuples" of the form $(a_1, a_2,\hdots)$. The right shift
+    operator $U$, defined as
+    \[
+        U((a_1,a_2,\hdots)) = (0,a_1,a_2,\hdots)
+        \]
+    is a bounded linear operator on $l^2(\mathbb{R})$. Furthermore,
+    the operator $U-0I = U$ does not have dense range: it misses the entire
+    dimension spanned by $(1,0,0,\hdots)$. Thus, $0\in\sigma_C(U)$.
+\end{example}
+
+For more examples of operators and their spectra, see
+\cite[Ch. 6.5]{Kubrusly2011}.

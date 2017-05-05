@@ -1,0 +1,103 @@
+\chapter{Introduction to Quantum Mechanics}
+
+The early 1900's brought about a distinct revolution in our understanding of
+physics. Certain issues in small-scale thermal physics were becoming more
+apparent as the experiments and the theory became more precise.
+The total energy emitted by a black body radiator was
+predicted to be infinity, while observations guaranteed that the average iron
+rod was not, in fact, a source of infinite energy. Furthermore, the
+photoelectric effect, a phenomenon in which a metal subjected to certain
+frequencies of light would emit electrons, was not well-understood. It was
+thought at the time that these small problems were the last remaining questions
+to be answered in physics, but they would prove to be signs of a much greater
+misunderstanding of the physical world.
+
+Planck's solution to the black-body problem was intriguing. He achieved
+finite predictions to black body energy radiation by assuming that the
+energy of the radiation came in discrete quantized packets of energy, $E=h\nu$,
+where $h$ is Planck's constant. While Planck used this method merely as a
+calculation tool, Einstein would later show that such an assumption has a more
+physical interpretation.
+
+The problem with the photoelectric effect was as follows: the electrons that
+eject from the metal have energy values that only depend on the \em{frequency},
+not the \em{intensity} of the light. Furthermore, below a certain color
+frequency, no electrons would be emitted at all, regardless of intensity. If one
+were to view the incoming light waves as pure waves, the energy delivered to the
+electrons would be directly proportional to the power of the electromagnetic
+wave. However, the average power of such a sinusoid is given as 
+\[
+    P_{avg} = \frac{Af}{2}
+\]
+Where $A$ is the amplitude, and $f$ is the frequency of the light. Under such a
+treatment of light (assuming electrons need a minimum amount of power to be
+ejected), any frequency of light--given a high enough amplitude--can eject
+photons. However, experiments showed that this was not the case.
+
+Einstein's solution to the problem was to assume that the energy delivered to
+the metal was not continuous--it came in discrete quantized packets he called
+photons. In this interpretation, the intensity of light describes how many of
+these photons are emitted per second, and the color or frequency of the light
+describes the amount of energy contained in a single photon. The dynamics of the
+photoelectric effect are determined by the interactions of the individual
+photons with the metal. This explains why the frequency of light, not the
+intensity, dictated the energy of the electrons emitted.
+
+Both Planck's black body solution and Einstein's photoelectric solution hint at
+a more complicated physical model than the classical theory described.
+This quantization of certain physical properties (like the amount of
+energy delivered by light) represents one of the fundamental differences between
+classical and quantum mechanics.
+
+\section{Measurement in Quantum Mechanics}
+%TODO-measurement in classical mechanics vs quantum
+%In classical mechanics, a particle's dynamics are described by Newton's laws.
+%Through the equation
+%\[
+%    \Del V = \frac{dp}{dt}
+%\]
+%A particle's phase space variables (position and velocity) are completely
+%determined by initial conditions and the potential. Furthermore, there is no
+%mathematical limitation on the values of the initial conditions; given a
+%potential and a desired state, one can choose initial conditions that
+%will evolve to that state.
+
+Quantum mechanics, on the other hand, does not hold the phase variables in the
+same regard. The fundamental evolution object is the \em{wavefunction}, a unit
+vector in a Hilbert space, usually $L^2$ on an appropriate domain. The phase
+variables of position and momentum then take on the role of (potentially
+unbounded) operators on this Hilbert space. In this view, the wavefunction
+evolves deterministically following the Schrodinger equation:
+\[
+    -i\frac{\del \psi}{\del t} = \hat{H}\psi
+\]
+
+Where $\hat{H}$ is the quantum mechanical Hamiltonian operator.
+
+
+\section{An Example: The Infinite Square Well}
+
+The most pertinent difference between classical physics and quantum physics lies
+in the quantization of the state variables of the system. To illustrate this
+difference, consider the simple setup of a particle of mass $m$ in a
+one-dimensional infinite square well potential
+\[
+    V(x) = 
+    \begin{cases}
+        0 & \text{if } x\in[-a,a]\  \infty & \text{else}
+    \end{cases}
+\]
+
+%TODO-ISW example
+
+\section{The Finite Square Well: Continuous vs Discrete Spectra}
+
+Consider a similar potential function, the finite square well
+\[
+    V(x) = 
+    \begin{cases}
+        0 & \text{if } x\in[-a,a]\  V_0 & \text{else}
+    \end{cases}
+\]
+for some positive potential height $V_0$
+

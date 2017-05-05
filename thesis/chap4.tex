@@ -1,0 +1,331 @@
+\section{The Spectral Theorem}
+Normal operators are quite special. We've already seen that a normal operator
+will only have an approximate point spectrum, but a far more important
+result--the spectral theorem--will better characterize the spectrum of a normal
+operator. The spectral theorem will also give a very useful way of understanding
+and computing with normal operators by expressing them as multiplication
+operators. In this section, different formulations of the spectral theorem will
+be explored, with the goal of understanding more concretely the relationship
+between a normal operator and its spectrum.
+
+\subsection{Spectral Theorem: The Finite Case}
+The computational technique of matrix diagonalization is a very powerful tool
+for working with matrices, since a diagonal matrix is much easier to compute
+with.  Multiplying diagonal matrices corresponds to entrywise multiplication,
+which is much easier to do than full matrix product calculations. Furthermore,
+the components of a diagonalized matrix correspond to the eigenvalues of the
+matrix.  These eigenvalues give valuable information on what the matrix does:
+The largest eigenvalue gives information on the norm of the matrix, and an
+eigenvalue of zero indicates that the matrix is noninvertible. Unfortunately,
+not every matrix is diagonalizable.
+
+Normal matrices are somewhat unique: the additional condition of normality gives
+a somewhat surprising characterization of their diagonalization. This
+characterization is stated in the \em spectral theorem \em for normal matrices.
+\begin{theorem}[The Spectral Theorem in Finite Dimensions]
+    Every normal matrix $A\in\mathbb{C}^{n\times n}$ is unitarily equivalent to
+    a diagonal matrix. That is,
+    \[
+        A = UDU*
+        \]
+    For a unitary matrix $U$ and a diagonal matrix $D$. Furthermore, the columns
+    of $U$ are the eigenvectors of $A$, and the components of $D$ are the
+    corresponding eigenvalues.
+\end{theorem}
+Proofs of this theorem are standard in any introductory linear algebra
+text (\cite[Ch. 17.3]{Lang1993} or \cite[p. 91]{MacCluer2009}).
+
+Recall that a unitary matrix $U$ is one that satisfies $U^*U = UU^* = I$.
+Unitary matrices are precisely the matrices that preserve inner
+products (\cite[p. 39-40]{MacCluer2009}).
+\begin{theorem}
+    Let $U:T\to V$ be a linear transformation between inner product spaces. The
+    following are equivalent:
+    \begin{itemize}
+        \itemsep0em
+        \item $U$ is unitary.
+        \item $U$ is invertible, and $U^* = U^{-1}$
+        \item $U$ preserves inner products. That is, $\langle Ux, Uy\rangle =
+            \langle x,y \rangle$
+    \end{itemize}
+\end{theorem}
+Thus, unitary matrices are isometric isomorphisms, which are the isomorphisms in
+the category of inner product spaces. In finite dimensions, a unitary matrix
+corresponds to an orthonormal change of basis, where the columns of the unitary
+matrix are the new basis vectors.
+
+In light of this understanding of unitary matrices, another way of stating the
+spectral theorem is as follows: any normal matrix $A$ has a set of eigenvectors
+that form an orthonormal basis for the space it operates on.
+
+Since the matrix $A$ corresponds to multiplication by an eigenvalue on the
+corresponding eigenspace, the spectral theorem can again be restated:
+\begin{theorem}[The Spectral Theorem in Finite Dimensions: Projection Version]
+    Every normal matrix $A\in\mathbb{C}^{n\times n}$ is expressible as
+    \[
+        A(x) = \sum_{i=1}^n \lambda_i \langle x,e_i\rangle e_i
+        \]
+    where $\lambda_i$ is an eigenvalue, and $e_i$ is the associated
+    eigenvector. Furthermore, the collection $\{e_i\}$ forms an orthonormal set.
+\end{theorem}
+
+If $\lambda_i \langle x,e_i\rangle e_i$ is interpreted as a projection onto the
+subspace spanned by $e_i$, the spectral theorem looks like
+\[
+    A = \sum_{i=1}^n \lambda_i P_i
+    \]
+Where $P_i$ is projection onto the subspace spanned by the eigenvectors
+associated with $\lambda_i$. In particular, the projections are all orthogonal
+to each other: $P_i\circ P_j = 0$ if $i\not = j$.
+
+The spectral theorem for matrices can be interpreted in two ways. First, it says
+that a normal matrix is isometrically isomorphic to a diagonal matrix. That is,
+normal matrices correspond to multiplication on some isomorphic space to the
+space they operate on. This makes some amount of sense; normality is a condition
+based on commutativity, and multiplication is inherently commutative.
+
+Second, a normal matrix can be expressed as a linear combination of projection
+operators. This formulation respects the invariance of the eigenspaces of $A$.
+In particular, if $A$ is applied to a vector already in an eigenspace, the
+vector stays in that eigenspace. The projections that make up $A$ characterize
+the invariant subspaces of $A$, and the spectral theorem says that $A$ on each
+of these subspaces is just multiplication by a (possibly different) scalar.
+
+\subsection{Spectral Theorem: Extending to the Infinite Case}
+
+As is the theme of Hilbert spaces, extending familiar results to infinite
+dimensions will cause problems. It's somewhat surprising, then, that the
+spectral theorem even holds at all in infinite dimensions. One of the biggest
+differences between finite and infinite dimensional Hilbert spaces is one we've
+already seen. The spectrum of a finite operator is always a collection of
+disjoint points, whereas the spectrum of an infinite operator may have
+infinitely many points, and could even be continuous!
+
+Another characteristic of finite dimension Hilbert spaces that does not carry
+over to infinite dimensions is the fact that (as long as they are both over the
+same field) two Hilbert spaces are isomorphic if and only if they have the same
+dimension. This fact was exploited implicitly in the first statement of the
+finite dimensional spectral theorem by assuming the space the diagonal matrix
+operated on was the same as the space the original matrix operated on. In
+infinite dimensions, this will not hold, and we must be more careful in stating
+which Hilbert space a normal operator operates as multiplication on.
+
+Following the pattern from the finite dimensional spectral theorem statements,
+there are two equivalent ways of stating the spectral theorem in general. One
+version creates a Hilbert space for a normal operator where the operator is
+isomorphic to multiplication, and the other version will express a normal
+operator as an integral of projections.
+
+\subsubsection{Projection-valued Measures and the Projection-valued Integral}
+The projection-valued measure approach to the spectral theorem utilizes a bit of
+measure theory in building a certain type of integral. Measure theory is the
+cornerstone of Lebesgue integration, and gives a rigorous way to construct
+integrals on more arbitrary spaces.
+
+A \em measure \em $\mu$ on a space $X$ is a function from subsets of $X$ to the
+positive real numbers (and possibly infinity) that satisfies
+\begin{itemize}
+    \itemsep0em
+    \item $\mu(\emptyset) = 0$
+    \item $\mu(A\cup B) = \mu(A) + \mu(B)$ for disjoint sets $A$ and $B$
+\end{itemize}
+
+Intuitively, a measure assigns to subsets their "weight". Thus, the weight of
+the empty set is zero, and the weight of two disjoint sets is the sum of their
+individual weights.
+
+Integration on a measure space is first defined for characteristic functions.
+The \em Lebesgue integral \em on a measure space $X$ is defined as the integral
+for which
+\[
+    \int_X \chi_S d\mu = \mu(S)
+\]
+Then, functions on $X$ are approximated by sums of characteristic functions, and
+with appropriate limits taken, a full integral can be defined.
+
+
+    \begin{example}
+        $X = \mathbb{R}$, and $d\mu = dx$ leads to the standard measure on the
+        real number line: $\mu([a,b]) = b-a$. Here, the integral is the standard
+        integral
+            \[
+                \int_{\mathbb{R}}f(x)dx
+            \]
+    \end{example}
+
+
+    \begin{example}
+        $X = \mathbb{N}$, and $d\mu$ is the counting ($\delta$) measure $\mu(S)
+        = |S|$ leads to the integral
+        \[
+            \int_{\mathbb{N}}f(n)d\mu = \sum_{i=1}^{\infty}f(n)
+        \]
+        which is just familiar summation of sequences.
+    \end{example}
+    Further study of measure theory can be found in most any graduate analysis
+    texts, such as \cite{Lang1993}.
+
+
+This idea of measures can be extended. In the spectral theorem, associated with
+each point in the spectrum was a projection onto a subspace of the Hilbert
+space; that is, there was a function from subsets of the spectrum to projection
+operators on the Hilbert space. This observation leads to the definition of a
+\em projection-valued measure \em (\cite[Ch. 6.2]{MacCluer2009}).
+\begin{definition}
+    A \em projection-valued measure \em $E$ on a space $X$ is a function from
+    subsets of $X$ to the set of orthogonal projections on a Hilbert space
+    $\textbf{H}$ such that
+    \begin{itemize}
+        \itemsep0em
+        \item $E(\emptyset)=0$ and $E(X) = I$
+        \item For disjoint subsets $A$ and $B$, $E(A)(\textbf{H})\perp
+            E(B)(\textbf{H})$
+        \item For a sequence $\{S_i\}_{i=1}^{\infty}$ of disjoint subsets,
+            $\sum_{i=1}^nE(S_i)h \to E(\cup_i S_i)h$ for each $h\in\textbf{H}$.
+    \end{itemize}
+\end{definition}
+
+Using this definition of a measure, a projection-valued integral can be
+constructed. In a similar way to regular Lebesgue integration, the integral is
+defined first on characteristic functions
+\[
+    \int_X\chi_S dE = E(S)
+\]
+and then is extended to more arbitrary functions via limits. With this
+definition of a projection-valued integral, we are ready to explore the first
+restatement of the spectral theorem.
+
+\begin{theorem}[The Spectral Theorem: Projection-Valued Integral]
+    Let $A$ be a normal operator on a Hilbert space $\textbf{H}$, and let
+    $\sigma(A)$ denote the spectrum of $A$. Then, there exists a unique
+    projection-valued measure on $\sigma(A)$ such that
+    \[
+        A = \int_{\sigma(A)}zdE(z)
+        \]
+\end{theorem}
+For a proof of this, see \cite[Ch. 6]{MacCluer2009}.
+
+Of course, the difficulty will come in constructing the projection-valued
+measure, but one is always guaranteed to exist.
+
+To better understand this
+result, consider the case where $\textbf{H}$ is finite-dimensional.
+    \begin{example}
+        Let $M = 
+            \begin{bmatrix}
+                \lambda_1 & 0 & \cdots & 0 \\
+                0 & \lambda_2 & \cdots & 0 \\
+                \vdots & \vdots & \ddots & 0\\
+                0 & 0 & 0 & \lambda_n 
+            \end{bmatrix}$
+
+            Then, the spectral measure $E(S)$ is the $\delta$-measure on
+            $\sigma(M)$ with $E(\lambda_i) = P_{\lambda_i}$, and the spectral
+            theorem states that
+            \[
+                M = \int_{\sigma(M) = \{\lambda_i\}} zdE(z)
+                  = \sum_{i=1}^n \lambda_i P_{\lambda_i}
+                  \]
+            which is a restatement of the familiar spectral theorem.
+    \end{example}
+For discrete points in a point spectrum, the projection-valued measure just
+assigns each eigenvalue a projection onto its eigenspace. In a similar way to
+how the counting measure worked on $\mathbb{N}$, the counting measure on
+$\sigma_P(M)$ converted the integral into a familiar sum. This correspondence is
+what motivates the projection-valued measure approach to the spectral theorem.
+The simplest way to take a sum over a continuous interval is by converting it to
+an integral.
+
+Let's consider a more difficult example.
+
+    \begin{example}
+        Let $M_x$ be the familiar multiplication operator on $L^2([0,1],dx)$.
+        It is easy to show that $\sigma(M_x) = \sigma_{AP}(M_x) = [0,1]$. If
+        $\lambda$ is not in $[0,1]$, then the operator of multiplication by
+        $\frac{1}{x-\lambda}$ inverts $(M_x-\lambda I)$, and thus $\lambda$ is
+        not in $\sigma(M_x)$.
+
+        The spectral measure $E(S)$ for an interval $S$ is given as $M_{\chi_S}$
+        for $\chi_S$ the characteristic function on $S$. That is, a projection
+        in this space is multiplication by a characteristic function.
+
+        See \cite[Ex. 6.11]{MacCluer2009} for more details on the construction of this
+        spectral measure.
+    \end{example}
+\subsubsection{The Direct Integral}
+
+Recall the alternative definition of the spectral theorem, which stated that
+every normal matrix is isometrically isomorphic to a multiplication operator.
+Here, the infinite-dimensional pathologies will come into play in defining the
+space on which a normal operator is isometrically isomorphic to multiplication.
+
+To begin with, we define an additional structure on a collection of Hilbert
+spaces. For a measure space $(X,\mu)$, let
+$\{\textbf{H}_{\lambda}\}_{\lambda\in\textbf{H}}$ be a collection of Hilbert
+spaces, one for each point $\lambda$ in $X$. Define a \em section \em of the
+collection to be a function from $X$ to the collection of Hilbert spaces such
+that $S(\lambda) \in \textbf{H}_{\lambda}$. In essence, $s$ picks out one vector
+from each $\textbf{H}_{\lambda}$. Furthermore, we can give the set of all such
+sections an inner product structure by defining
+\[
+    \langle s_1,s_2 \rangle = \int_X \langle s_1(\lambda),s_2(\lambda)\rangle
+    d\mu(\lambda)
+\]
+
+Finally, we define the \em direct integral \em of a collection of Hilbert spaces
+$\{\textbf{H}_{\lambda}\}$ to be the inner product space of (equivalence classes
+of) sections on $\{\textbf{H}_{\lambda}\}$, denoted
+\[
+    \int_X^{\oplus}H_\lambda d\mu(\lambda)
+\]
+It is easily shown (\cite[Ch. 7.3]{Hall2013})
+that this new space is complete, and thus is a Hilbert space.
+
+\begin{example}
+    Let $X$ be a measure space, and let $H_{\lambda} = \mathbb{C} \forall
+    \lambda\in X$. Then,
+    \[
+        \int_X^{\oplus}H_\lambda d\mu(\lambda) = L^2(X)
+    \]
+\end{example}
+
+\begin{example}
+    Let $X = \{a_1, a_2, \hdots, a_n\}$ with the counting measure. Then
+    \[
+        \int_X^{\oplus}H_{a_i} d\mu(a_i) = \oplus_{i=1}^n H_{a_i}
+        \]
+    That is, the counting measure again reduces integration to a familiar sum
+\end{example}
+
+The spectral theorem can now be stated.
+
+\begin{theorem}[The Spectral Theorem: Direct Integral]
+    Given a normal operator $A$ on a Hilbert space, there exists a measure $\mu$
+    on the spectrum $\sigma(A)$ of $A$, and Hilbert spaces $H_{\lambda}$ for
+    $\lambda\in\sigma(A)$ such that $A$ is unitarily equivalent to
+    multiplication on the direct integral
+    \[
+        \int_{\sigma(M)}^{\oplus}H_\lambda d\mu(\lambda)
+    \]
+    That is, $(UAU^*)s(\lambda) = \lambda s(\lambda)$ for $s$ in the direct
+    integral.
+\end{theorem}
+
+The spaces $H_{\lambda}$ in general will not be subspaces of the original
+Hilbert space, but instead will represent more generalized eigenspaces of the
+operator $A$. However, in the case of finite dimensions, each $H_{\lambda}$ is a
+subspace, and the original spectral theorem is recovered.
+
+\begin{example}
+    Let $M$ be a normal matrix with distinct eigenvalues. Then, let $\mu$ be the
+    counting measure on $\sigma(A)$, and let $H_{\lambda}$ be the
+    one-dimensional eigenspace associated with the eigenvalue $\lambda$. Then,
+    the direct integral becomes
+    \[
+        \int_{\sigma(M)}^{\oplus}H_\lambda d\mu(\lambda) = \oplus_{i=1}^n
+        H_{\lambda}
+        \]
+    and the spectral theorem states that $M$ is unitarily equivalent to
+    multiplication on each subspace. In other words, $M$ is unitarily equivalent
+    to a diagonal matrix.
+\end{example}

@@ -1,0 +1,49 @@
+\section{Conclusion}
+
+Quantum mechanics relies heavily on functional analysis and Hilbert space
+mathematics, and without a good understanding of the intricacies of
+infinite-dimensional Hilbert spaces, apparent pathologies can easily confuse and
+mislead.
+
+The spectrum of a quantum observable corresponds to the possible measurement
+results of that observable, so understanding the spectrum of observables is key
+in understanding a quantum system. The naive approach to understanding the
+spectrum is to solve the eigenvalue equation $\hat{f}x=\lambda x$ in a way
+analogous to finite-dimensional linear algebra. While this works in certain
+cases--like the Hamiltonian for the infinite square well--that have only point
+spectra, most observables will not be that simple. Trying to solve the
+eigenvalue equation in the finite square well setup yielded near-nonsensical
+results of "eigenstates" that were no longer in the Hilbert space of the system!
+
+These pathologies can be resolved by exploring the spectral theorem for
+infinite-dimensional operators more closely. Two formulations of the spectral
+theorem provide key insight into the behavior of the spectrum of a normal (or
+self-adjoint) operator. Specifically, the projection-valued measure approach and
+the direct integral approach offer different but equivalent ways of interpreting
+the spectrum.
+
+The projection-valued measure approach to the spectral theorem constructs a
+"differential projection", or a projection-valued measure, that takes into
+account the structure of the spectrum in constructing the projection operators
+onto the eigenspaces for a normal operator. For points in the spectrum that are
+isolated, this differential projection becomes an actual projection operator,
+but for intervals of points in the spectrum, the differential projection has to
+be integrated over to yield an actual projection. This reflects the apparent
+pathology encountered in the naive solution to the finite square well energies:
+for energies greater than zero, a single energy is not enough to generate a
+projection. However, when taking an interval of energies, an invariant subspace
+can be constructed that remains in the Hilbert space.
+
+The direct integral approach constructs "generalized eigenspaces" for each point
+in the spectrum, and assigns to the whole spectrum a measure that takes the
+structure of the spectrum into account. Here, the isolated points have a point
+mass measure, and their associated eigenspace is a true invariant subspace of
+the original Hilbert space. Again, for the continuous part of the spectrum, no
+single "generalized eigenspace" has positive measure, but an interval of them
+integrate to an actual invariant subspace.
+
+Both formulations say the same thing: the point spectrum of an operator has true
+eigenvalues and eigenstates, whereas the approximate point spectrum of the
+operator will not have actual eigenstates for any particular eigenvalue. Rather,
+some positive-measure set of approximate spectrum points must be considered for
+the theory to work.

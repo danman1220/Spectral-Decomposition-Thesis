@@ -1,0 +1,170 @@
+\section{Quantum Revisited}
+With the new tools of the spectral theorem, we can now better understand the
+more subtle intricacies of quantum mechanics. Recall that one of the rules of
+quantum mechanics gives a way of computing a probability distribution for an
+observable from its spectrum. Specifically, a consequence of rule 3 is that the
+possible values an observable can take coincide with the spectrum of the
+observable. Furthermore, the relative probabilities of each value are given by
+the length of the projections of a state onto the "eigenspace" of that value.
+However, it was clear in the finite square well example that some parts of the
+spectrum may not have actual eigenspaces. The spectral theorem gives a way to
+better understand what the general projections and invariant spaces look like
+for these more complicated operators.
+
+\subsection{The Finite Square Well Revisited}
+Let's reconsider the finite square well potential in quantum mechanics. Recall
+that the relevant Hilbert space for this problem is $L^2(\mathbb{R})$, and the
+Hamiltonian operator is of the form
+\[
+    \hat{H}(x) =
+    \begin{cases}
+        \frac{-\hbar^2}{2m}\frac{d^2}{dx^2} - V_0& \text{if } x\in[-a,a]\\
+        \frac{-\hbar^2}{2m}\frac{d^2}{dx^2} + &\text{else}
+    \end{cases}
+\]
+
+The Hamiltonian can be shown to have a spectrum that looks like
+\[
+    \sigma(\hat{H}) = \{E_1, E_2,\hdots,E_n\} \cup (0,\infty)
+\]
+Explicit, square-integrable functions could be found that lie in the kernel of
+$\hat(H) - EI$ for $E < 0$, which are of the form
+\[
+    \psi(x) =
+    \begin{cases}
+        C_1e^{\sqrt{\epsilon}x}& \text{if } x\in(-\infty,-a]\\
+        C_2\cos(\sqrt{v-\epsilon})& \text{if } x\in[-a,a]\\
+        C_3e^{-\sqrt{\epsilon}x}& \text{if } x\in [a, \infty)
+    \end{cases}
+\]
+Where $\epsilon = -\frac{2mE}{\hbar^2}$ and $v=\frac{2mV_0}{\hbar^2}$, and
+$C_1$, $C_2$, and $C_3$ were constants set to normalize $\psi$. Since such
+eigenfunctions exist, the points $E_n$ where $E_N<0$ are part of the point
+spectrum $\sigma_P(\hat{H})$.
+
+Showing that $(0,\infty)$ is in the spectrum of $\hat{H}$ requires a bit more
+work. In our first attempt at finding the eigenfunctions for $E>0$, we saw that
+the only solutions for the eigenvalue equation $\hat{H}\psi = E\psi$ were
+complex exponentials of the form $e^{\pm ikx}$ for
+$k=\frac{\sqrt{2mE}}{\hbar}$. Since these solutions are not in
+$L^2(\mathbb{R})$, they do not lie in the kernel of $\hat{H}-EI$, and are not
+sufficient to show that $E$ is a part of the spectrum of $\hat{H}$. However, the
+point spectrum is not the only spectral partition available to us. It may be the
+case that $E$ is in the approximate point spectrum of $\hat{H}$ without being in
+the point spectrum. As it turns out, this is the case.
+
+\begin{theorem}
+    For all $E>0$, $E\in\sigma_{AP}(\hat{H})$, where $\hat{H}$ is the
+    Hamiltonian for the finite square well acting on the Hilbert space
+    $L^2(\mathbb{R})$.
+\end{theorem}
+
+\begin{proof}
+    Fix $E>0$, and let $f_n$ be a $C^{\infty}$ function on $\mathbb{R}$ such
+    that
+    \[
+        f_n(x) =
+        \begin{cases}
+            1 & x\in(-n,n)\\
+            0 & x\in(-(n+1),n+1)
+        \end{cases}
+        \]
+    Then, let $\psi_n(x) = \frac{e^{ikx}f_n(x)}{||e^{ikx}f_n(x)||}$ for
+    $k=\frac{\sqrt{2mE}}{\hbar}$. This defines a sequence of unit length states
+    for which 
+    \[
+        ||(\hat{H}-EI)\psi_n(x)||\to 0
+        \]
+    Thus, the operator $\hat{H}-EI$ is not bounded below, and
+    $E\in\sigma_{AP}(\hat{H})$
+\end{proof}
+
+We find that the spectrum of $\hat{H}$ is made up of finitely many disjoint
+points $E_n$ below zero (the point spectrum of $\hat{H}$, and the entire
+positive real number line (the approximate point spectrum of $\hat{H}$).
+
+Constructing the projection-valued measure for this operator is fairly
+straightforward, using the results of the previous analysis. For simplicity,
+$E$ will represent an energy (an element of the spectrum of $\hat{H}$), and $F$
+will be the projection-valued measure.
+
+For the point spectrum, 
+\[
+    dF(E) = P_E
+\]
+where $P_E$ is the orthogonal
+projection onto the one dimensional subspace of the state with energy $E$.
+
+For the approximate point spectrum, one can interpret $dF(E)$ to be a
+projection onto the two dimensional subspace spanned by the "states"
+\[
+    \begin{aligned}
+        \psi_{E}(x) &= e^{-ikx} \\
+        \psi_{E}(x) &= e^{ikx}
+    \end{aligned}
+\]
+
+Thus, the spectral theorem states that
+\[
+    \begin{aligned}
+        \hat{H} &= \int_{\sigma{\hat{H}}}zdF(z)\\
+                &= \sum_{n} E_n P_{E_n} + \int_0^{\infty}EdF(E)
+    \end{aligned}
+\]
+
+Now, the problem with interpreting the complex exponentials as eigenstates is
+much clearer. Each $E_n$ yielded a true eigenstate, which allowed for their
+projection-valued measure to be the "point mass" measure. That is, the discrete
+points had weight on their own. However, in the continuum $(0,\infty)$, the
+measure is more akin to the Lebesgue measure on the reals. Single points have no
+weight, but instead it takes a whole interval of points to integrate over to
+have positive mass. Here, a single $E>0$ does not yield a projection, but an
+interval of energies will yield a projection onto a subspace in $L^2$.
+
+Now, let's construct the direct integral for this operator. Similar to the
+projection-valued measure approach, each part of the spectrum will be taken
+separately.
+
+The measure on the point spectrum is the counting measure, so that part of
+the integral becomes
+\[
+    \int_{\sigma_P(\hat{H})}^{\oplus}\textbf{H}_{E_n}d\mu(E) =
+    \oplus_{i=1}^{n} \textbf{H}_{E_n}
+\]
+Where $\textbf{H}_{E_n}$ is the one dimensional subspace of the state with
+energy $E_n$.
+
+The measure on the approximate point spectrum will be similar to the Lebesgue
+measure, and the integrand $\textbf{H}_E$ can be shown to be the two-dimensional
+subspace of complex exponentials $e^{ikx}$ and $e^{-ikx}$ for
+$k=\frac{\sqrt{2mE}}{\hbar}$.
+
+Thus, the Hilbert space for which $\hat{H}$ acts as multiplication is
+\[
+    \oplus_{i=1}^n \textbf{H}_{E_n} \oplus
+    \int_{\sigma_{AP}(\hat{H})}^{\oplus} H_Ed\mu(E)
+\]
+
+Again, we see that the problem with treating the complex exponentials as
+eigenstates has to do with their measure. In this formulation, the distinction
+is even more clear, as $\mu(E)=0$ for a single $E>0$. Thus, while the complex
+exponentials do form a sort of "invariant subspace" in the sense that they are
+part of the direct integral, their measure being zero hints at the fact that
+they are not part of the original Hilbert space. Rather, a positive-measure
+interval of these invariant subspaces is needed to properly fit them in $L^2$.
+
+Note that in each case, the point spectrum of the operator behaved well and led
+to the familiar theory of eigenvalue decomposition, while the approximate point
+spectrum led to pathologies that had to be resolved. The point spectrum was a
+set of isolated points, and the approximate point spectrum ended up being a
+continuum.
+
+This observation yields a more general result:
+\begin{theorem}
+    Isolated points in the spectrum of a normal operator are part of the point
+    spectrum.
+\end{theorem}
+
+That is to say, isolated energies of a quantum system always yield definite
+eigenstates. Furthermore, the contrapositive asserts that the approximate point
+spectrum will not have any isolated points.

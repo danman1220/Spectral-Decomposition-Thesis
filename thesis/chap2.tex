@@ -1,0 +1,169 @@
+\section{Hilbert Space Basics}
+In quantum mechanics, each system has an associated Hilbert space where the
+states live, and each observable has an associated (potentially unbounded)
+operator on that Hilbert space. It is necessary, then, to understand what
+Hilbert spaces are and how to work with them.
+
+\subsection{Hilbert Space Definitions}
+A \em complex Hilbert space \em \textbf{H} is a vector space over $\mathbb{C}$
+along with an inner product such that \textbf{H} is complete with respect to the
+induced metric
+\[
+d(x,y) = \langle x-y,x-y\rangle
+\]
+\cite[p. 8]{MacCluer2009}
+
+Here, \textbf{H} being complete means that every Cauchy sequence in \textbf{H}
+converges in \textbf{H}. This condition is important, as it allows for limits to
+be taken without worry of accidentally leaving the space.
+
+The requirement that the vector space be over $\mathbb{C}$ is not necessary for
+a general Hilbert space, but most Hilbert spaces encountered in quantum
+mechanics will be over $\mathbb{C}$.
+
+Most familiar vector spaces are, in fact, Hilbert spaces. The familiar vector
+space $\mathbb{C}^n$ is a vector space over $\mathbb{C}$ that is complete with
+respect to its inner product, since $\mathbb{C}$ itself is complete, and the
+metric on $\mathbb{C}^n$ respects the standard metric on $\mathbb{C}$. However,
+a Hilbert space need not be finite dimensional.
+
+\begin{example}[$L^2$ as a Hilbert Space]
+An important class of Hilbert spaces is the $L^2$ spaces of square integrable
+functions. Given a positive %positive?
+measure space $(X,\mu)$, let $L^2(X,\mu)$ be the collection of all equivalence
+classes of measurable functions $f: X \to \mathbb{C}$ that satisfy
+\[
+    \int_X |f|^2d\mu < \infty
+\]
+where $f\sim g$ if and only if $\int_X |f-g|^2d\mu = 0$. As a consequence of
+this, changing $f$ on a set of measure zero will not change its equivalence
+class.
+
+To define an inner product on $L^2(X,\mu)$, we set
+\[
+    \langle f,g \rangle = \int_X f\overline{g}d\mu
+\]
+For a more detailed construction of $L^2$ spaces, see \cite[p.
+    181-185]{Lang1993}.
+\end{example}
+
+
+\subsubsection{Orthonormal Bases}
+A natural way to express elements of a Hilbert space is in reference to a basis.
+Preferably, this basis should also reflect the inner product structure of the
+Hilbert space, and the most useful way to do so is by using an orthonormal
+basis.
+
+An orthonormal set is a set $\mathscr{E}$ of vectors in a Hilbert space
+\textbf{H} where
+\begin{itemize}
+    \item $\forall e \in \mathscr{E}, |e| = 1$
+    \item $\forall e,f \in \mathscr{E}, \langle e,f\rangle = \delta_{ef}$
+\end{itemize}
+where $\delta_{ef}$ is the Kronecker Delta on $e$ and $f$.
+
+An orthonormal basis is defined as a maximal orthonormal set. A quick
+application of Zorn's lemma (\cite[p. 19, 50]{MacCluer2009}) shows that every
+Hilbert space has an orthonormal basis.
+
+For an arbitrary vector $\psi$ in \textbf{H} with ONB $\{e_n\}$, its ONB
+expansion in terms of $\{e_n\}$ is
+\[
+    \psi = \sum_{n=0}^{\infty} \langle \psi,e_n \rangle e_n
+\]
+
+\subsection{Hilbert Space Duality: Functionals and Representation}
+Every vector space $V$ has a corresponding dual space of linear functionals on
+$V$, denoted $V^*$. This is the space of all linear functions
+$\phi:V\to\mathbb{R}$. In the case of a vector space with norms, it is
+additionally required that the function be bounded with respect to the norm
+\[
+    ||\phi|| = \sup_{x\in V}\{|\phi(x)| : |x| \leq 1\}
+\]
+
+When studying Hilbert spaces, it is important to understand the structure of its
+dual space. To that end, the Riesz representation theorem will give an easy way
+to understand the dual space of a Hilbert space in terms of the Hilbert space
+itself.
+
+\begin{theorem}[Riesz Representation]
+    Any linear functional on a Hilbert space \textbf{H} is given by an inner
+    product with a unique fixed vector $h_0 \in \textbf{H}: \phi(x) =
+    \langle h_0, x \rangle$, and the norm of the functional is $||h_0||$.
+\end{theorem}
+\cite[p. 17]{MacCluer2009}
+
+\subsection{Operators on a Hilbert Space}
+For any pair $X$ and $Y$ of Hilbert spaces, there is another normed vector space
+that is of great importance: the space of bounded linear operators from $X$ to
+$Y$. For an operator $T:X\to Y$ to be linear, it must satisfy
+\[
+    T(\alpha x_1 + \beta x_2) = \alpha T(x_1) + \beta T(x_2)
+\]
+for vectors $x_1, x_2$ and scalars $\alpha, \beta$. Furthermore, for $T$ to be
+bounded, there must exist some positive constant $C$ such that
+\[
+    ||T(x)||_Y \leq C||x||_X
+\]
+
+Bounded linear operators are a natural generalization of the matrix operators
+seen in a linear algebra course, but also include many other useful operators,
+such as integral operators, multiplication operators, and other such linear
+objects. (see \cite[p. 32-34]{MacCluer2009} for more examples).
+
+\begin{example}
+    Consider a matrix $M\in \mathbb{R}^{n\times m}$ as a linear transformation
+    from $\mathbb{R}^n$ to $\mathbb{R}^m$ defined as $M(x) = Mx$. This is a
+    bounded linear operator from $\mathbb{R}^n$ to $\mathbb{R}^m$. Linearity is
+    obvious from the definition of matrix multiplication, since $M(x+y) = Mx +
+    My$. Furthermore, the matrix is also bounded, since $\forall x \in X$ we
+    have
+    \[
+        ||Mx|| \leq ||M||||x||
+    \]
+    where the vector norm is the standard Euclidean norm, and the matrix norm is
+    the induced norm, which is guaranteed to be finite. %TODO-citation?
+\end{example}
+
+\begin{example}
+    Consider the operator $\int_0^x f(y)dy$ from the Hilbert space $L^2([0,1)$ 
+    to itself. This operator is
+    easily seen to be both bounded and linear. 
+    More generally, given a measurable function $k:X\times X \to \mathbb{C}$ on
+    a measure space $(X,\mu)$, the \em integral operator\em
+    \[
+        \int_X k(x,y)f(y)d\mu(y)
+    \]
+    from $L^2(X)$ to itself is a bounded linear operator. Thus, the familiar
+    integral operator from differential equations is just a special case of a
+    bounded linear operator on some Hilbert space.
+\end{example}
+
+
+\begin{example}
+    The derivative operator $\frac{d}{dx}$ on $L^2([0,1])$ is a linear operator,
+    since
+    \[
+        \frac{d}{dx}(\alpha f + \beta g) =
+        \alpha\frac{df}{dx} + \beta\frac{dg}{dx}1
+    \]
+    However, this operator is not bounded. In fact, it's only defined on a
+    (dense) subset of $L^2([0,1])$, the space of differentiable functions with a
+    square-integrable derivative. For a detailed treatment of this operator, see
+    \cite[p. 127-128, Ch. 9]{Hall2013}.
+\end{example}
+
+\subsection{Adjoints of Operators}
+Given a Hilbert space, there is a natural symmetry present in the inner product.
+For an operator $A$ from a Hilbert space \textbf{H} to itself, we define the
+\em adjoint of $A$ \em to be the unique operator $A^*$ such that, $\forall x,y
+\in \textbf{H}$,
+\[
+    \langle Ax,y\rangle = \langle x, A^*y\rangle
+\]
+In the case of $A=A^*$, the operator is said to be \em self-adjoint\em, and in
+the case of $AA^*=A^*A$, the operator is said to be \em normal\em. The condition
+of normality is a powerful property, and will be the condition necessary for an
+operator to satisfy the spectral theorem. Furthermore, we have already seen that
+every quantum observable is self-adjoint, and thus is normal. The rest of this
+paper will focus on normal operators.
