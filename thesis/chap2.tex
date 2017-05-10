@@ -93,6 +93,9 @@ itself.
 \end{theorem}
 \cite[p. 17]{MacCluer2009}
 
+In other words, there is an isometric isomorphism between $H$ and $H^*$. Because of this,
+Hilbert spaces are said to be \em self-dual\em.
+
 \subsection{Operators on a Hilbert Space}
 For any pair $X$ and $Y$ of Hilbert spaces, there is another normed vector space
 that is of great importance: the space of bounded linear operators from $X$ to
@@ -109,7 +112,7 @@ bounded, there must exist some positive constant $C$ such that
 Bounded linear operators are a natural generalization of the matrix operators
 seen in a linear algebra course, but also include many other useful operators,
 such as integral operators, multiplication operators, and other such linear
-objects. (see \cite[p. 32-34]{MacCluer2009} for more examples).
+objects. (See \cite[p. 32-34]{MacCluer2009} for more examples).
 
 \begin{example}
     Consider a matrix $M\in \mathbb{R}^{n\times m}$ as a linear transformation
@@ -126,9 +129,10 @@ objects. (see \cite[p. 32-34]{MacCluer2009} for more examples).
 \end{example}
 
 \begin{example}
-    Consider the operator $\int_0^x f(y)dy$ from the Hilbert space $L^2([0,1)$ 
-    to itself. This operator is
-    easily seen to be both bounded and linear. 
+    Consider the operator
+    $T:L^2([0,1])\to L^2([0,1])$ given by $Tf(x) = \int_0^x f(y)dy$.
+    This operator is
+    easily seen to be both bounded and linear.
     More generally, given a measurable function $k:X\times X \to \mathbb{C}$ on
     a measure space $(X,\mu)$, the \em integral operator\em
     \[
@@ -145,8 +149,9 @@ objects. (see \cite[p. 32-34]{MacCluer2009} for more examples).
     since
     \[
         \frac{d}{dx}(\alpha f + \beta g) =
-        \alpha\frac{df}{dx} + \beta\frac{dg}{dx}1
+        \alpha\frac{df}{dx} + \beta\frac{dg}{dx}.
     \]
+
     However, this operator is not bounded. In fact, it's only defined on a
     (dense) subset of $L^2([0,1])$, the space of differentiable functions with a
     square-integrable derivative. For a detailed treatment of this operator, see
@@ -155,12 +160,14 @@ objects. (see \cite[p. 32-34]{MacCluer2009} for more examples).
 
 \subsection{Adjoints of Operators}
 Given a Hilbert space, there is a natural symmetry present in the inner product.
-For an operator $A$ from a Hilbert space \textbf{H} to itself, we define the
-\em adjoint of $A$ \em to be the unique operator $A^*$ such that, $\forall x,y
-\in \textbf{H}$,
+For a bounded operator $A$ from a Hilbert space \textbf{H} to itself, we define
+the \em adjoint of $A$ \em to be the unique bounded operator $A^*$ such that,
+$\forall x,y \in \textbf{H}$,
 \[
     \langle Ax,y\rangle = \langle x, A^*y\rangle
 \]
+Such a unique bounded operator is guaranteed to exist as a consequence of Riesz
+Representation (see \cite[Thm. 2.12]{MacCluer2009}).
 In the case of $A=A^*$, the operator is said to be \em self-adjoint\em, and in
 the case of $AA^*=A^*A$, the operator is said to be \em normal\em. The condition
 of normality is a powerful property, and will be the condition necessary for an

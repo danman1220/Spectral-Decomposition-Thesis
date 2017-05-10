@@ -23,7 +23,7 @@ Another way of restating this is that $\sigma(A)$ is the set of all (complex)
 scalars $\lambda$ such that the matrix $A-\lambda I$ has nontrivial kernel.
 
 Of course, in finite dimensions, having a nontrivial kernel is equivalent to
-being noninvertible, so the spectrum of a matrix $A$ is easiest described as the
+being noninvertible, so the spectrum of a matrix $A$ is best described as the
 set of all $\lambda$ such that $A-\lambda I$ is not invertible. By defining the
 spectrum in terms of invertibility, it is easy to extend the concept to
 arbitrary Hilbert spaces.
@@ -90,21 +90,17 @@ I$ is not bounded below. That is, $\lambda \in \sigma_{AP}(T)$ if and only if
 there exists some sequence of unit vectors $\{h_n: h_n \in \textbf{H}\}$ for
 which
 \[
-    ||(T-\lambda I)h_n|| \to 0
+    ||(T-\lambda I)h_n|| \to 0.
 \]
+The vectors $h_n$ are commonly referred to as "approximate eigenvectors".
 
-It is easy to see that if $\lambda\in\sigma_A(T)$, then
-$\lambda\in\sigma_{AP}(T)$.
-\begin{theorem}
-    Let $T$ be a bounded linear operator on a Hilbert space $\textbf{H}$. Then,
-    $\sigma_P(T) \subset \sigma_{AP}(T)$
-\end{theorem}
-\begin{proof}
-    Suppose $\lambda\in\sigma_P(T)$. Then, 
-    $\exists x\in\textbf{H} : (T-\lambda I)x = 0$. Take $h_n = \frac{x}{||x||}$
-    this is a sequence of unit vectors that satisfy $||(A-\lambda I)h_n||\to 0$,
-    and thus $\lambda\in\sigma_{AP}(T)$.
-\end{proof}
+It is easy to see that if $\lambda\in\sigma_P(T)$, then
+$\lambda\in\sigma_{AP}(T)$, since one can take for $h_n$ the constant sequence
+of the eigenvector corresponding to $\lambda$. Then, $||(T-\lambda I)h_n|| = 0$
+and $\lambda\in\sigma_{AP}(T)$.
+
+Because of this, it is convenient to define the \em strict approximate point
+spectrum \em $\sigma_{SAP}$ to be $\sigma_{AP}\setminus\sigma_P$.
 
 \subsubsection{The Compression Spectrum}
 If $T-\lambda I$ fails to have dense range, $\lambda$ is said to be part of the
@@ -118,11 +114,12 @@ explored further: the following theorem will motivate why.
     Let $\lambda$ be in $\sigma(T)$ for a normal operator $T$, and consider the
     ways in which $T-\lambda I$ can fail to be invertible.
 
-    If the kernel of $T-\lambda I$ is nontrivial, then $\lambda\in\sigma{P}(T)$,
+    If the kernel of $T-\lambda I$ is nontrivial, then $\lambda\in\sigma_{P}(T)$,
     and thus $\lambda\in\sigma_{AP}(T)$.
 
     Consider, then, the case where the kernel of $T-\lambda I = \{0\}$. Now,
-    since for any normal operator, $||Ax|| = ||A^*x||$ %TODO citation
+    since $||Ax|| = ||A^*x||$ for any normal operator (see \cite[prop.
+    2.14]{MacCluer2009}),
     $||(T-\lambda I)x|| = ||(T^* - \overline{\lambda}I)x|| \not= 0$, so the
     kernel of $T^* - \overline{\lambda}I$ is trivial as well.
     By the Fredholm alternative (\cite[p. 350]{Olver2014}),
@@ -130,8 +127,8 @@ explored further: the following theorem will motivate why.
         \overline{\text{Ran}(T-\lambda I)} = \text{Ker}(T^* -
         \overline{\lambda}I)^{\perp} = \{0\}^{\perp} = \textbf{H}
         \]
-    And thus the range of $T-\lambda I$ is dense, and is not in the compression
-    spectrum of $T$.
+    And thus the range of $T-\lambda I$ is dense, and $\lambda$ is not in the
+    compression spectrum of $T$.
 \end{proof}
 
 All that being said, there are easy examples of operators with a compression

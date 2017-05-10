@@ -28,7 +28,7 @@ EM wave is given as
 \[
     P_{avg} = \frac{Af}{2}
 \]
-Where $A$ is the amplitude, and $f$ is the frequency of the light. In this
+where $A$ is the amplitude, and $f$ is the frequency of the light. In this
 model, any frequency of light--given a high enough amplitude--can deliver enough
 energy to ionize the electrons in the metal. However, experiments showed that
 this was not the case. Below a certain frequency, electrons would not be ionized
@@ -67,7 +67,7 @@ time.\cite[p. 64]{Hall2013}
 \\
 \textbf{Rule 1}: The state of a quantum system is given by a unit vector
 (usually denoted $\psi$) in some Hilbert space \textbf{H}. Furthermore, two
-states $\psi_1$ and $\psi_2$ are equivalent (in the sense that they represent
+unit vectors $\psi_1$ and $\psi_2$ are equivalent (in the sense that they represent
 the same physical state) iff $\psi_1 = c\psi_2$ for some $c \in \mathbb{C}$.
 
 While the Hilbert space used will often change from system to system, it is
@@ -121,7 +121,7 @@ In this case, the expectation value of $f$ is given as
         \hat{f}\psi_{\lambda} \rangle\\
         &= \langle \psi_{\lambda}, \lambda \psi_{\lambda} \rangle\\
         &= \lambda \langle \psi_{\lambda}, \psi_{\lambda} \rangle\\
-        &= \lambda
+        &= \lambda.
     \end{aligned}
 \]
 As it turns out, the only probability distribution that satisfies these
@@ -132,8 +132,7 @@ result in $\lambda$.
 Ideally, one would find a complete set of such eigenstates. Then, each quantum
 state in the system could be expressed as a linear combination of eigenstates 
 $\psi = \sum_{n} c_n\psi_{\lambda_n}$.
-
-The probability of measuring $\lambda_n$ for the variable $f$ is given as
+The probability of measuring $\lambda_n$ for the variable $f$ would then be given as
 $|c_n|^2$. While this assertion is not directly derivable from the previous
 results \cite[p. 67]{Hall2013}, it is a very reasonable assumption to make. Since
 $\psi$ is a unit vector, $\sum |c_n|^2 = 1$, and the expectation value for $f$
@@ -148,7 +147,7 @@ and suppose a state variable $f$ is measured to have a value $\lambda \in
 \mathbb{R}$. Then, immediately following the measurement, the system will be in
 a new state $\psi '$ satisfying
 \[
-    \hat{f}\psi ' = \lambda \psi '
+    \hat{f}\psi ' = \lambda \psi '.
 \]
 
 The transition of the wavefunction from $\psi$ to $\psi '$ is known as the
@@ -156,9 +155,11 @@ collapse of the wavefunction. This rule makes intuitive sense: measuring a
 variable twice in rapid succession should yield very similar, if not identical,
 results. Collapse is frequently used to set up quantum mechanical systems. If
 one desires a wavefunction in a particular eigenstate $\psi_{\lambda}$ of an
-observable $f$, one could repeatedly measure $f$ for a system until the
-measurement yields $\lambda$. For observables whose eigenstates are stationary
-in time, the wavefunction is then guaranteed to stay in the state
+observable $f$, one could construct and ensemble of identical systems, and
+measure $f$ on each system until the measurement yields $\lambda$ (for further
+discussion of such a setup, see \cite{griffiths2005}). For observables
+whose eigenstates are stationary in time, the wavefunction is then guaranteed to
+stay in the state
 $\psi_{\lambda}$.
 \\
 \\
@@ -167,13 +168,14 @@ Schrodinger equation:
 \[
     \partial_t \psi = \frac{1}{i\hbar}\hat{H}\psi
 \]
-Where $\hat{H}$ is the observable obtained from the classical Hamiltonian of the
+where $\hat{H}$ is the observable obtained from the classical Hamiltonian of the
 system.
 
 It is not difficult to see that this differential equation is solved with
 \[
-    \psi(t) = e^{\frac{-it\hat{H}}{\hbar}}\psi_0
+    \psi(t) = e^{\frac{-it\hat{H}}{\hbar}}\psi_0.
 \]
+
 (For an exploration of this \em operator valued exponential \em, see \cite[p.
 74,208]{Hall2013}).
 In the case that $\hat{H}$ has eigenfunctions
@@ -182,6 +184,15 @@ the exponential becomes
 \[
     e^{\frac{-it\hat{H}}{\hbar}}e_n = e^{\frac{-iE_nt}{\hbar}}e_n
 \]
+which extends linearly to arbitrary states
+\[
+    \begin{aligned}
+        \psi &= \sum_n c_n e_n\\
+        e^{\frac{-it\hat{H}}{\hbar}}\psi &= \sum_n c_n
+        e^{\frac{-iE_nt}{\hbar}}e_n.
+    \end{aligned}
+\]
+
 Of course, it is unreasonable to expect $\hat{H}$, which is only guaranteed to
 be self-adjoint, to have an orthonormal basis of eigenfunctions. However, we
 will see that the spectral theorem gives a way to generalize the notion of
@@ -195,7 +206,7 @@ Schrodinger equation
 \[
     \hat{H}\psi=E\psi
 \]
-Or more generally, finding the spectral decomposition of $\hat{H}$
+or more generally, finding the spectral decomposition of $\hat{H}$.
 
 
 \subsection{An Example: The Infinite Square Well}
@@ -222,9 +233,9 @@ The standard quantization of kinetic energy uses the identity
 \[
     KE = \frac{p^2}{2m}
 \]
-Which implies that
+which implies that
 \[
-    \hat{KE} = \frac{-\hbar^2}{2m}\frac{d^2}{dx^2}
+    \widehat{KE} = \frac{-\hbar^2}{2m}\frac{d^2}{dx^2}
 \]
 Since the Hamiltonian is the sum of the kinetic and potential energy of the
 particle, and the particle has no potential energy inside the well, it follows
@@ -239,11 +250,11 @@ This leads to the equation
     -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}\psi = E \psi
 \]
 
-Solving this second order differential equation has the general solution
+Solving this second order differential equation yields
 \[
     \psi_E(x) =
-    A\sin\left(\sqrt{\frac{2mE}{\hbar^2}}x\right) + 
-    B\cos\left(\sqrt{\frac{2mE}{\hbar^2}}x\right)
+    A\sin\left(\sqrt{\frac{2mE}{\hbar^2}}x\right) +
+    B\cos\left(\sqrt{\frac{2mE}{\hbar^2}}x\right).
 \]
 
 Now, we can impose boundary conditions. By requiring that the wavefunction be
@@ -268,7 +279,7 @@ which restricts $A$ to the value of $\sqrt{\frac{2}{a}}$.
 
 Thus, we have a complete characterization of the eigenstates of the Hamiltonian:
 \[
-    \psi_E(x) = \sqrt{\frac{2}{a}}\sin(\frac{n\pi}{a}x)
+    \psi_E(x) = \sqrt{\frac{2}{a}}\sin\left(\frac{n\pi}{a}x\right).
 \]
 
 It is a standard result (\cite[p. 89]{Folland2009})
@@ -277,18 +288,18 @@ $L^2([0,a]) \subset L^2(\mathbb{R})$. So any wavefunction $\psi(x)$ can be writt
 as
 \[
     \psi(x) =
-    \sum_{n=1}^{\infty} c_n \sqrt{\frac{2}{a}}\sin(\frac{n\pi}{a}x)
+    \sum_{n=1}^{\infty} c_n \sqrt{\frac{2}{a}}\sin\left(\frac{n\pi}{a}x\right)
 \]
 with coefficients given by
 \[
-    c_n = \int_{[0,a]} \psi(x)\sqrt{\frac{2}{a}}\sin(\frac{n\pi}{a}x)dx
+    c_n = \int_{[0,a]} \psi(x)\sqrt{\frac{2}{a}}\sin\left(\frac{n\pi}{a}x\right)dx
 \]
-
 Furthermore, given an initial state $\Psi(x,0) = \psi(x)$, the full
 time-evolution solution to this potential is
 \[
     \Psi(x,t) =
-    \sum_{n=1}^{\infty} c_n e^{\frac{-iE_nt}{\hbar}}\sqrt{\frac{2}{a}}\sin(\frac{n\pi}{a}x)
+    \sum_{n=1}^{\infty} c_n
+    e^{\frac{-iE_nt}{\hbar}}\sqrt{\frac{2}{a}}\sin\left(\frac{n\pi}{a}x\right)
 \]
 with $E_n = \frac{n^2\pi^2\hbar^2}{2ma^2}$ for $n\in \mathbb{N}$.
 
@@ -315,7 +326,7 @@ This time, the Hamiltonian is piecewise defined as
     \hat{H}(x) =
     \begin{cases}
         \frac{-\hbar^2}{2m}\frac{d^2}{dx^2} - V_0& \text{if } x\in[-a,a]\\
-        \frac{-\hbar^2}{2m}\frac{d^2}{dx^2} + &\text{else}
+        \frac{-\hbar^2}{2m}\frac{d^2}{dx^2} &\text{else}
     \end{cases}
 \]
 which will operate on the Hilbert space $L^2(\mathbb{R})$.
@@ -324,7 +335,8 @@ Again, our goal is to find the eigenfunctions (or a more general spectral
 decomposition) of this Hamiltonian on $L^2(\mathbb{R})$.
 The complicating factor here is the fact that the Hamiltonian is actually
 unbounded on $L^2(\mathbb{R})$. For example, there are many functions in
-$L^2(\mathbb{R})$ that do not have square-integrable solutions. Therefore, it is
+$L^2(\mathbb{R})$ that do not have square-integrable second derivatives, so
+$\hat{H}$ cannot act on them. Therefore, it is
 necessary to impose stricter conditions on our solutions. Namely, $\psi$ is
 required to be continuous with a continuous first derivative. Note that $\psi$
 may not have a defined second derivative at the points of discontinuity $x=a,
@@ -349,31 +361,44 @@ the Hamiltonian and applying some basic algebra, we find that
     \sqrt{\epsilon} = \sqrt{v-\epsilon}\tan(\sqrt{v-\epsilon}a)
 \]
 This equation is transcendental, so there are no closed-form solutions to
-$\epsilon$. However, the existence of solutions can be seen by graphing
-$\sqrt{\epsilon}$ and $\sqrt{v-\epsilon}\tan(\sqrt{v-\epsilon}a)$. %TODO graphs
+$\epsilon$, but the existence of solutions can be seen by graphing
+$\sqrt{\epsilon}$ and $\sqrt{v-\epsilon}\tan(\sqrt{v-\epsilon}a)$ (see \cite[p.
+78-80]{griffiths2005}).
 However, there are only finitely many $\epsilon$ for which this is true. That
 is, there are only finitely many energy states that are "bound" to the
 potential.
+
+\begin{figure}
+    \begin{center}
+    \includegraphics[scale=0.5]{transcendental_solutions}
+    \caption{A plot of the functions $f(x) = \sqrt{x}$ and
+    $g(x)=\sqrt{1-x}\tan(\sqrt{1-x})$. Their intersection point marks a solution
+        to the transcendental equation $\sqrt{x} = \sqrt{1-x}\tan(\sqrt{1-x})$.}
+    \end{center}
+\end{figure}
 
 What if we restrict attention instead to the case $E>0$? Applying a similar
 analysis to what was done in the infinite square well case, the solutions can be
 found to be linear combinations of complex exponentials. There is no inherent
 restriction on the energies allowed in this case, since there are no boundary
 conditions to match. However, a single complex exponential $\psi(x) = e^{ikx}$
-is not in $L^2(\mathbb{R})$, since the integral diverges to infinity, and thus
-is not in the domain of the Hamiltonian.
+is not in $L^2(\mathbb{R})$, since the integral
+$\int_{\mathbb{R}}e^{ikx}\overline{e^{ikx}}dx$
+diverges to infinity, and thus is not in the domain of the Hamiltonian.
 
 While a single complex exponential may not be square-integrable, an infinite sum
-of them might be. Using some elementary results from Fourier analysis, it can be
+of them might be. Using some elementary results from Fourier analysis(see
+\cite[Thm. 8.4.1]{Lang1993}), it can be
 shown that the function
 \[
     \psi(x) = \int_{\mathbb{R}} \phi(k)e^{ikx}dx
 \]
 is square-integrable for $\phi$ a Schwartz function (a function that rapidly
-decays to zero). %TODO-citation
+decays to zero).
 
 In this sense, the state $e^{ikx}$ is a sort of "pseudo-eigenstate". By itself,
-the state is not in $L^2(\mathbb{R})$, but a continuous sum of these states can
+the state is not in $L^2(\mathbb{R})$, but a continuous sum of these states,
+which physicists refer to as a "wave packet", can
 be in $L^2(\mathbb{R})$. This concept will be made much more complete with the
 tools of the spectral theorem.
 

@@ -11,13 +11,10 @@ between a normal operator and its spectrum.
 \subsection{Spectral Theorem: The Finite Case}
 The computational technique of matrix diagonalization is a very powerful tool
 for working with matrices, since a diagonal matrix is much easier to compute
-with.  Multiplying diagonal matrices corresponds to entrywise multiplication,
-which is much easier to do than full matrix product calculations. Furthermore,
-the components of a diagonalized matrix correspond to the eigenvalues of the
-matrix.  These eigenvalues give valuable information on what the matrix does:
-The largest eigenvalue gives information on the norm of the matrix, and an
-eigenvalue of zero indicates that the matrix is noninvertible. Unfortunately,
-not every matrix is diagonalizable.
+with. Diagonal matrices commute with each other, since multiplication of
+diagonal matrices corresponds to entrywise multiplication. Furthermore, the
+matrix exponential $e^D$ corresponds to exponentiation of each entry.
+Unfortunately, not every matrix is diagonalizable.
 
 Normal matrices are somewhat unique: the additional condition of normality gives
 a somewhat surprising characterization of their diagonalization. This
@@ -27,27 +24,22 @@ characterization is stated in the \em spectral theorem \em for normal matrices.
     a diagonal matrix. That is,
     \[
         A = UDU*
-        \]
-    For a unitary matrix $U$ and a diagonal matrix $D$. Furthermore, the columns
+    \]
+    for a unitary matrix $U$ and a diagonal matrix $D$. Furthermore, the columns
     of $U$ are the eigenvectors of $A$, and the components of $D$ are the
     corresponding eigenvalues.
 \end{theorem}
 Proofs of this theorem are standard in any introductory linear algebra
-text (\cite[Ch. 17.3]{Lang1993} or \cite[p. 91]{MacCluer2009}).
+text, and the generalized proof for \em compact \em operators can be found in
+\cite[Ch. 17.3]{Lang1993} or \cite[p. 91]{MacCluer2009}.
 
-Recall that a unitary matrix $U$ is one that satisfies $U^*U = UU^* = I$.
-Unitary matrices are precisely the matrices that preserve inner
+Recall that a unitary matrix $U$ is an invertible matrix that satisfies $U^*U =
+UU^* = I$.
+Unitary matrices are precisely the invertible matrices that preserve inner
 products (\cite[p. 39-40]{MacCluer2009}).
 \begin{theorem}
-    Let $U:T\to V$ be a linear transformation between inner product spaces. The
-    following are equivalent:
-    \begin{itemize}
-        \itemsep0em
-        \item $U$ is unitary.
-        \item $U$ is invertible, and $U^* = U^{-1}$
-        \item $U$ preserves inner products. That is, $\langle Ux, Uy\rangle =
-            \langle x,y \rangle$
-    \end{itemize}
+    Let $U:T\to V$ be a unitary transformation. Then, $\langle Ux,Uy\rangle =
+    \langle x,y \rangle$.
 \end{theorem}
 Thus, unitary matrices are isometric isomorphisms, which are the isomorphisms in
 the category of inner product spaces. In finite dimensions, a unitary matrix
@@ -78,18 +70,25 @@ Where $P_i$ is projection onto the subspace spanned by the eigenvectors
 associated with $\lambda_i$. In particular, the projections are all orthogonal
 to each other: $P_i\circ P_j = 0$ if $i\not = j$.
 
+Note that in the case where an eigenvalue is repeated ($\lambda_i = \lambda_j$
+for some $i\not= j$), the eigenspace is multidimensional, and one can apply
+Grahm-Schmidt orthonormalization to obtain an orthonormal basis of eigenvectors
+$\{e_i\}$ for that eigenvalue. Taking this into consideration, the spectral
+theorem still works with repeated eigenvalues.
+
 The spectral theorem for matrices can be interpreted in two ways. First, it says
 that a normal matrix is isometrically isomorphic to a diagonal matrix. That is,
 normal matrices correspond to multiplication on some isomorphic space to the
 space they operate on. This makes some amount of sense; normality is a condition
-based on commutativity, and multiplication is inherently commutative.
+based on commutativity, and scalar multiplication is inherently commutative.
 
-Second, a normal matrix can be expressed as a linear combination of projection
-operators. This formulation respects the invariance of the eigenspaces of $A$.
-In particular, if $A$ is applied to a vector already in an eigenspace, the
-vector stays in that eigenspace. The projections that make up $A$ characterize
-the invariant subspaces of $A$, and the spectral theorem says that $A$ on each
-of these subspaces is just multiplication by a (possibly different) scalar.
+Second, a normal matrix can be expressed as a linear combination of mutually
+orthogonal projection operators. This formulation respects the invariance of the
+eigenspaces of $A$.  In particular, if $A$ is applied to a vector already in an
+eigenspace, the vector stays in that eigenspace. The projections that make up
+$A$ characterize the invariant subspaces of $A$, and the spectral theorem says
+that $A$ on each of these subspaces is just multiplication by a (possibly
+different) scalar.
 
 \subsection{Spectral Theorem: Extending to the Infinite Case}
 
@@ -100,15 +99,6 @@ differences between finite and infinite dimensional Hilbert spaces is one we've
 already seen. The spectrum of a finite operator is always a collection of
 disjoint points, whereas the spectrum of an infinite operator may have
 infinitely many points, and could even be continuous!
-
-Another characteristic of finite dimension Hilbert spaces that does not carry
-over to infinite dimensions is the fact that (as long as they are both over the
-same field) two Hilbert spaces are isomorphic if and only if they have the same
-dimension. This fact was exploited implicitly in the first statement of the
-finite dimensional spectral theorem by assuming the space the diagonal matrix
-operated on was the same as the space the original matrix operated on. In
-infinite dimensions, this will not hold, and we must be more careful in stating
-which Hilbert space a normal operator operates as multiplication on.
 
 Following the pattern from the finite dimensional spectral theorem statements,
 there are two equivalent ways of stating the spectral theorem in general. One
@@ -122,19 +112,29 @@ measure theory in building a certain type of integral. Measure theory is the
 cornerstone of Lebesgue integration, and gives a rigorous way to construct
 integrals on more arbitrary spaces.
 
-A \em measure \em $\mu$ on a space $X$ is a function from subsets of $X$ to the
-positive real numbers (and possibly infinity) that satisfies
+A \em measure \em $\mu$ on a space $X$ is a function from certain subsets of $X$
+to the positive real numbers (and possibly infinity) that satisfies
 \begin{itemize}
     \itemsep0em
     \item $\mu(\emptyset) = 0$
-    \item $\mu(A\cup B) = \mu(A) + \mu(B)$ for disjoint sets $A$ and $B$
+    \item $\mu(\bigcup_i=1^{infty}A_i) = \sum_{i=1}^{\infty}$ for mutually
+        disjoint sets $A_i$
+
 \end{itemize}
 
 Intuitively, a measure assigns to subsets their "weight". Thus, the weight of
-the empty set is zero, and the weight of two disjoint sets is the sum of their
-individual weights.
+the empty set is zero, and the weight of a countable union of disjoint sets is
+the sum of their individual weights.
 
-Integration on a measure space is first defined for characteristic functions.
+Integration on a measure space is first defined for characteristic functions
+$\chi_S(x)$ defined as
+\[
+    \chi_S(x) =
+    \begin{cases}
+        1, &\text{if }x\in S\\
+        0 &\text{else}
+    \end{cases}
+    \]
 The \em Lebesgue integral \em on a measure space $X$ is defined as the integral
 for which
 \[
@@ -162,8 +162,8 @@ with appropriate limits taken, a full integral can be defined.
         \]
         which is just familiar summation of sequences.
     \end{example}
-    Further study of measure theory can be found in most any graduate analysis
-    texts, such as \cite{Lang1993}.
+    Further study of measure theory can be found in any graduate analysis
+    text, such as \cite{Lang1993}.
 
 
 This idea of measures can be extended. In the spectral theorem, associated with
@@ -261,10 +261,10 @@ space on which a normal operator is isometrically isomorphic to multiplication.
 
 To begin with, we define an additional structure on a collection of Hilbert
 spaces. For a measure space $(X,\mu)$, let
-$\{\textbf{H}_{\lambda}\}_{\lambda\in\textbf{H}}$ be a collection of Hilbert
+$\{\textbf{H}_{\lambda}\}_{\lambda\in X}$ be a collection of Hilbert
 spaces, one for each point $\lambda$ in $X$. Define a \em section \em of the
-collection to be a function from $X$ to the collection of Hilbert spaces such
-that $S(\lambda) \in \textbf{H}_{\lambda}$. In essence, $s$ picks out one vector
+collection to be a function $s$ from $X$ to the collection of Hilbert spaces such
+that $s(\lambda) \in \textbf{H}_{\lambda}$. In essence, $s$ picks out one vector
 from each $\textbf{H}_{\lambda}$. Furthermore, we can give the set of all such
 sections an inner product structure by defining
 \[
@@ -282,8 +282,8 @@ It is easily shown (\cite[Ch. 7.3]{Hall2013})
 that this new space is complete, and thus is a Hilbert space.
 
 \begin{example}
-    Let $X$ be a measure space, and let $H_{\lambda} = \mathbb{C} \forall
-    \lambda\in X$. Then,
+    Let $X$ be a measure space, and let $H_{\lambda} = \mathbb{C}$ for all
+    $\lambda\in X$. Then,
     \[
         \int_X^{\oplus}H_\lambda d\mu(\lambda) = L^2(X)
     \]
@@ -292,8 +292,8 @@ that this new space is complete, and thus is a Hilbert space.
 \begin{example}
     Let $X = \{a_1, a_2, \hdots, a_n\}$ with the counting measure. Then
     \[
-        \int_X^{\oplus}H_{a_i} d\mu(a_i) = \oplus_{i=1}^n H_{a_i}
-        \]
+        \int_X^{\oplus}H_{a_i} d\mu(a_i) = \oplus_{i=1}^n H_{a_i}.
+    \]
     That is, the counting measure again reduces integration to a familiar sum
 \end{example}
 
@@ -305,7 +305,7 @@ The spectral theorem can now be stated.
     $\lambda\in\sigma(A)$ such that $A$ is unitarily equivalent to
     multiplication on the direct integral
     \[
-        \int_{\sigma(M)}^{\oplus}H_\lambda d\mu(\lambda)
+        \int_{\sigma(M)}^{\oplus}H_\lambda d\mu(\lambda).
     \]
     That is, $(UAU^*)s(\lambda) = \lambda s(\lambda)$ for $s$ in the direct
     integral.
@@ -323,7 +323,7 @@ subspace, and the original spectral theorem is recovered.
     the direct integral becomes
     \[
         \int_{\sigma(M)}^{\oplus}H_\lambda d\mu(\lambda) = \oplus_{i=1}^n
-        H_{\lambda}
+        H_{\lambda_i}
         \]
     and the spectral theorem states that $M$ is unitarily equivalent to
     multiplication on each subspace. In other words, $M$ is unitarily equivalent
